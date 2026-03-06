@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro de Clientes</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
+    <header class="topo">
+      <div class="container">
+        <h1>Cadastro de Clientes</h1>
+        <p>CRUD simples com localStorage</p>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="card">
+        <h2>Novo cliente</h2>
+        <form id="form-cliente" novalidate>
+          <input type="hidden" id="cliente-id" />
+
+          <div class="grid">
+            <label>
+              Nome *
+              <input type="text" id="nome" placeholder="Nome completo" required />
+            </label>
+            <label>
+              Email *
+              <input type="email" id="email" placeholder="email@exemplo.com" required />
+            </label>
+            <label>
+              Telefone
+              <input type="tel" id="telefone" placeholder="(11) 99999-9999" />
+            </label>
+            <label>
+              Cidade
+              <input type="text" id="cidade" placeholder="Cidade" />
+            </label>
+          </div>
+
+          <div class="acoes-form">
+            <button type="submit" class="btn primario" id="btn-salvar">Salvar</button>
+            <button type="button" class="btn" id="btn-cancelar" disabled>Cancelar edicao</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card">
+        <div class="barra">
+          <div class="busca">
+            <input
+              type="search"
+              id="busca"
+              placeholder="Buscar por nome ou email"
+            />
+          </div>
+          <div class="filtros">
+            <select id="ordenacao">
+              <option value="">Ordenar</option>
+              <option value="nome-asc">Nome A-Z</option>
+              <option value="nome-desc">Nome Z-A</option>
+              <option value="criado-asc">Criado (mais antigo)</option>
+              <option value="criado-desc">Criado (mais recente)</option>
+            </select>
+            <button type="button" class="btn" id="btn-exportar">Exportar JSON</button>
+            <label class="btn btn-upload">
+              Importar JSON
+              <input type="file" id="importar-json" accept=".json" />
+            </label>
+          </div>
+        </div>
+
+        <div class="tabela-wrapper">
+          <table class="tabela" id="tabela-clientes">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Cidade</th>
+                <th>Criado em</th>
+                <th>Acoes</th>
+              </tr>
+            </thead>
+            <tbody id="tabela-corpo"></tbody>
+          </table>
+        </div>
+
+        <div class="paginacao">
+          <button class="btn" id="pag-prev">Anterior</button>
+          <div id="paginas"></div>
+          <button class="btn" id="pag-next">Proxima</button>
+        </div>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="./assets/js/app.js"></script>
+  </body>
+</html>
